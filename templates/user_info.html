@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{user.username}}'s Page{% endblock %}</title>
+</head>
+<body>
+    {% block content %}
+    <h1>{{user.username}}</h1>
+    <p>{{user.email}}</p>
+    <p>{{user.first_name}} {{user.last_name}}</p>
+    <h2>Feedback</h2>
+    <ul>
+        {% for feedback in user.feedback %}
+            <li>{{ feedback.title }}</li>
+            <a href="/feedback/{{ feedback.id }}/update"><button>Edit Feedback</button></a>
+            <a href="/feedback/{{ feedback.id }}/delete"><button>Delete Feedback</button></a>
+        {% endfor %}
+    </ul>
+    <a href="/users/{{ user.username }}/feedback/add"><button>Add Feedback</button></a>
+    <form method="POST" action="/users/{{ user.username }}/delete">
+        <button>Delete Account</button>
+    </form>
+
+    {% endblock %}
+</body>
+</html>
