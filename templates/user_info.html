@@ -15,7 +15,9 @@
         {% for feedback in user.feedback %}
             <li>{{ feedback.title }}</li>
             <a href="/feedback/{{ feedback.id }}/update"><button>Edit Feedback</button></a>
-            <a href="/feedback/{{ feedback.id }}/delete"><button>Delete Feedback</button></a>
+            <form method="POST" action="/feedback/{{ feedback.id }}/delete">
+                <button>Delete Feedback</button>
+            </form>
         {% endfor %}
     </ul>
     <a href="/users/{{ user.username }}/feedback/add"><button>Add Feedback</button></a>
